@@ -1,10 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap');
 
+/* ═══════════════════════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════════════════════ */
 html,
 body,
 [class*="css"],
 [data-testid="stAppViewContainer"] {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Outfit', 'Segoe UI', sans-serif;
   color: #e6edf3;
   background-color: #080b11;
 }
@@ -13,6 +16,479 @@ body,
   background-color: #080b11;
 }
 
+/* ═══════════════════════════════════════════════════════════
+   EMOJI FONT FALLBACK — ensures emojis render everywhere
+   ═══════════════════════════════════════════════════════════ */
+.emoji {
+  font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', 'Android Emoji', 'EmojiSymbols', 'EmojiOne Mozilla', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PARTICLES CANVAS (fondo animado con símbolos de código)
+   ═══════════════════════════════════════════════════════════ */
+#particles-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CUSTOM SCROLLBAR — estilo terminal
+   ═══════════════════════════════════════════════════════════ */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #080b11;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1f293d;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00f2fe;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ANIMACIONES KEYFRAMES
+   ═══════════════════════════════════════════════════════════ */
+
+/* Fade in up */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Slide in from left */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide in from right */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scale in */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Typing cursor blink — terminal cursor */
+@keyframes blink {
+
+  from,
+  to {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Pulse glow */
+@keyframes pulseGlow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(0, 242, 254, 0.2);
+  }
+
+  50% {
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.5), 0 0 40px rgba(0, 242, 254, 0.2);
+  }
+}
+
+/* Float animation */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* Shimmer para métricas */
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Gradient border rotate */
+@keyframes borderRotate {
+  0% {
+    --angle: 0deg;
+  }
+
+  100% {
+    --angle: 360deg;
+  }
+}
+
+/* Data stream — líneas cayendo como en Matrix */
+@keyframes dataStream {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* Counter animation */
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Terminal cursor blink */
+@keyframes terminalCursor {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Scanline effect */
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+/* Code glow pulse */
+@keyframes codeGlow {
+
+  0%,
+  100% {
+    text-shadow: 0 0 5px rgba(0, 242, 254, 0.3);
+  }
+
+  50% {
+    text-shadow: 0 0 15px rgba(0, 242, 254, 0.6), 0 0 30px rgba(0, 242, 254, 0.2);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CLASES DE ANIMACIÓN (triggered por IntersectionObserver)
+   ═══════════════════════════════════════════════════════════ */
+.anim-fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.anim-fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.anim-fade-in {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.anim-fade-in.visible {
+  opacity: 1;
+}
+
+.anim-slide-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.anim-slide-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.anim-slide-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.anim-slide-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.anim-scale-in {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.anim-scale-in.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Stagger delays for children */
+.stagger-1 {
+  transition-delay: 0.05s !important;
+}
+
+.stagger-2 {
+  transition-delay: 0.10s !important;
+}
+
+.stagger-3 {
+  transition-delay: 0.15s !important;
+}
+
+.stagger-4 {
+  transition-delay: 0.20s !important;
+}
+
+.stagger-5 {
+  transition-delay: 0.25s !important;
+}
+
+.stagger-6 {
+  transition-delay: 0.30s !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TOP NAVIGATION BAR — estilo IDE/terminal
+   ═══════════════════════════════════════════════════════════ */
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: rgba(8, 11, 17, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(31, 41, 61, 0.8);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  animation: fadeIn 0.5s ease;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+.nav-logo {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #00f2fe;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+  white-space: nowrap;
+}
+
+.nav-logo::before {
+  content: '>_ ';
+  color: #00e676;
+  font-weight: 400;
+}
+
+.nav-links {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.nav-link {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.82rem;
+  color: #c9d1d9;
+  text-decoration: none;
+  padding: 7px 14px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: #e6edf3;
+  transform: translateY(-1px);
+  border-color: rgba(0, 242, 254, 0.15);
+}
+
+.nav-link.active {
+  background: rgba(0, 242, 254, 0.08) !important;
+  border: 1px solid rgba(0, 242, 254, 0.25) !important;
+  color: #00f2fe !important;
+  font-weight: 600;
+  box-shadow: 0 0 12px rgba(0, 242, 254, 0.1);
+}
+
+/* Mobile hamburger */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #1f293d;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #00f2fe;
+  border-radius: 1px;
+  transition: all 0.3s ease;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MOBILE NAV OVERLAY
+   ═══════════════════════════════════════════════════════════ */
+.mobile-nav-overlay {
+  display: none;
+  position: fixed;
+  top: 56px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(8, 11, 17, 0.97);
+  backdrop-filter: blur(20px);
+  z-index: 9998;
+  flex-direction: column;
+  padding: 20px;
+  gap: 4px;
+  animation: fadeIn 0.2s ease;
+}
+
+.mobile-nav-overlay.open {
+  display: flex;
+}
+
+.mobile-nav-link {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 1rem;
+  color: #c9d1d9;
+  text-decoration: none;
+  padding: 14px 18px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mobile-nav-link:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: #e6edf3;
+}
+
+.mobile-nav-link.active {
+  background: rgba(0, 242, 254, 0.08) !important;
+  border: 1px solid rgba(0, 242, 254, 0.25) !important;
+  color: #00f2fe !important;
+  font-weight: 600;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SIDEBAR (reducida - solo info del proyecto)
+   ═══════════════════════════════════════════════════════════ */
 section[data-testid="stSidebar"] {
   background-color: #0c0f16 !important;
   border-right: 1px solid #1f293d !important;
@@ -21,31 +497,73 @@ section[data-testid="stSidebar"] {
 section[data-testid="stSidebar"] .stMarkdown,
 section[data-testid="stSidebar"] p {
   color: #c9d1d9 !important;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.85rem;
 }
 
+.sidebar-logo {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #00f2fe;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+}
+
+.sidebar-logo::before {
+  content: '>_ ';
+  color: #00e676;
+  font-weight: 400;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BUTTONS — estilo terminal/comando
+   ═══════════════════════════════════════════════════════════ */
 div.stButton>button {
   background-color: #121826 !important;
   color: #00f2fe !important;
   border: 1px solid rgba(0, 242, 254, 0.4) !important;
   border-radius: 8px !important;
-  font-family: 'Fira Code', monospace !important;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
   font-weight: 600 !important;
   padding: 10px 24px !important;
   transition: all 0.3s ease !important;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.3px;
+}
+
+div.stButton>button::before {
+  content: '$ ';
+  color: #00e676;
+  opacity: 0.8;
 }
 
 div.stButton>button:hover {
   background-color: #00f2fe !important;
   color: #080b11 !important;
-  box-shadow: 0 0 18px rgba(0, 242, 254, 0.3) !important;
+  box-shadow: 0 0 25px rgba(0, 242, 254, 0.4), 0 0 50px rgba(0, 242, 254, 0.1) !important;
   transform: translateY(-2px);
 }
 
+div.stButton>button:hover::before {
+  color: #080b11;
+}
+
+div.stButton>button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FORM ELEMENTS
+   ═══════════════════════════════════════════════════════════ */
 label,
 label *,
 [data-testid="stWidgetLabel"],
 [data-testid="stWidgetLabel"] * {
   color: #c9d1d9 !important;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+  font-size: 0.88rem !important;
 }
 
 [data-testid="stCheckbox"] label,
@@ -53,16 +571,16 @@ label *,
 [data-testid="stCheckbox"] p,
 [data-testid="stCheckbox"] span {
   color: #00d2ff !important;
-  font-family: 'Fira Code', monospace !important;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
   font-weight: 500 !important;
 }
 
-/* Selectores más específicos para no interferir con widgets de terceros (#2) */
 [data-testid="stAppViewContainer"] div[data-baseweb="select"]>div {
   background-color: #121826 !important;
   border: 1px solid #1f293d !important;
   color: #e6edf3 !important;
   border-radius: 8px !important;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
 }
 
 [data-testid="stAppViewContainer"] div[role="listbox"] {
@@ -72,6 +590,8 @@ label *,
 
 [data-testid="stAppViewContainer"] div[role="option"] {
   color: #e6edf3 !important;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+  font-size: 0.85rem !important;
 }
 
 [data-testid="stAppViewContainer"] div[role="option"]:hover,
@@ -79,11 +599,18 @@ label *,
   background-color: #1f293d !important;
 }
 
+[data-testid="stAppViewContainer"] [data-baseweb="select"],
+[data-testid="stAppViewContainer"] [data-baseweb="popover"] {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+}
+
+/* Sidebar radio buttons */
 section[data-testid="stSidebar"] div[role="radiogroup"] label {
   padding: 8px 12px !important;
   border-radius: 6px !important;
   border: 1px solid transparent !important;
   transition: all 0.2s ease !important;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
 }
 
 section[data-testid="stSidebar"] div[role="radiogroup"] label:hover {
@@ -100,21 +627,38 @@ section[data-testid="stSidebar"] div[role="radiogroup"] label[data-checked="true
   font-weight: 600 !important;
 }
 
+/* ═══════════════════════════════════════════════════════════
+   MAIN TITLE & HEADERS — CENTRADOS Y ESTILO TERMINAL
+   ═══════════════════════════════════════════════════════════ */
+.title-container {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeInUp 0.6s ease;
+}
+
 .main-title {
-  font-family: 'Fira Code', monospace;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
   font-size: 2.2rem;
   font-weight: 700;
   letter-spacing: -0.5px;
   line-height: 1.2;
   margin-bottom: 4px;
+  margin-top: 56px;
+  text-align: center;
+  width: 100%;
 }
 
 .main-title-text {
   background: linear-gradient(90deg, #00f2fe 0%, #4facfe 50%, #9d4edd 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
+/* Terminal typing cursor */
 .main-title::after {
   content: " _";
   animation: blink 1s step-end infinite;
@@ -123,32 +667,79 @@ section[data-testid="stSidebar"] div[role="radiogroup"] label[data-checked="true
   -webkit-text-fill-color: #00f2fe !important;
 }
 
-@keyframes blink {
-
-  from,
-  to {
-    opacity: 0
-  }
-
-  50% {
-    opacity: 1
-  }
+/* Terminal prompt before title */
+.main-title .title-prompt {
+  color: #00e676;
+  font-weight: 400;
+  -webkit-text-fill-color: #00e676 !important;
+  margin-right: 8px;
 }
 
 .main-subtitle {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
   font-size: 0.95rem;
-  color: #c9d1d9;
+  color: #8b949e;
   margin-bottom: 0;
+  text-align: center;
+  width: 100%;
+  margin-top: 8px;
 }
 
 .accent-bar {
   height: 3px;
   background: linear-gradient(90deg, #00f2fe 0%, #9d4edd 100%);
   border-radius: 2px;
-  margin: 12px 0 24px 0;
+  margin: 12px auto 24px auto;
   box-shadow: 0 1px 10px rgba(0, 242, 254, 0.3);
+  animation: slideInLeft 0.6s ease;
+  width: 200px;
+  max-width: 60%;
 }
 
+/* ═══════════════════════════════════════════════════════════
+   SECTION HEADERS — estilo prompt de terminal
+   ═══════════════════════════════════════════════════════════ */
+.section-head {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #00f2fe;
+  border-bottom: 1px solid #1f293d;
+  padding-bottom: 8px;
+  margin: 32px 0 16px 0;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+
+
+/* ═══════════════════════════════════════════════════════════
+   TERMINAL DECORATIONS
+   ═══════════════════════════════════════════════════════════ */
+.terminal-line {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.82rem;
+  color: #484f58;
+  text-align: center;
+  margin: 4px 0;
+}
+
+.terminal-line .prompt {
+  color: #00e676;
+}
+
+.terminal-line .command {
+  color: #00f2fe;
+}
+
+.terminal-line .comment {
+  color: #484f58;
+  font-style: italic;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CODE EDITOR CARDS (con animación de brillo)
+   ═══════════════════════════════════════════════════════════ */
 .code-editor-card {
   background-color: #0d1117;
   border: 1px solid #21262d;
@@ -156,6 +747,30 @@ section[data-testid="stSidebar"] div[role="radiogroup"] label[data-checked="true
   margin-bottom: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   overflow: hidden;
+  transition: all 0.35s ease;
+  position: relative;
+}
+
+.code-editor-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 242, 254, 0.4), transparent);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.code-editor-card:hover {
+  border-color: rgba(0, 242, 254, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 242, 254, 0.05);
+  transform: translateY(-2px);
+}
+
+.code-editor-card:hover::before {
+  opacity: 1;
 }
 
 .editor-header {
@@ -192,7 +807,7 @@ section[data-testid="stSidebar"] div[role="radiogroup"] label[data-checked="true
 }
 
 .editor-title {
-  font-family: 'Fira Code', monospace;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
   font-size: 0.8rem;
   color: #c9d1d9;
   margin-left: 8px;
@@ -200,7 +815,7 @@ section[data-testid="stSidebar"] div[role="radiogroup"] label[data-checked="true
 
 .editor-body {
   padding: 16px 20px;
-  font-family: 'Fira Code', monospace;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
   font-size: 0.88rem;
   line-height: 1.5;
   color: #c9d1d9;
@@ -245,15 +860,40 @@ section[data-testid="stSidebar"] div[role="radiogroup"] label[data-checked="true
   color: #ff79c6;
 }
 
+.code-function {
+  color: #d2a8ff;
+}
+
+.code-class {
+  color: #ffa657;
+}
+
+.code-variable {
+  color: #79c0ff;
+}
+
+.code-operator {
+  color: #ff79c6;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RECOMMENDATION BOX
+   ═══════════════════════════════════════════════════════════ */
 .rec-box {
   margin-top: 16px;
   padding: 12px 16px;
   background-color: rgba(0, 242, 254, 0.04);
   border-left: 3px solid #00f2fe;
   border-radius: 0 6px 6px 0;
-  font-family: 'Fira Code', monospace;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
   font-size: 0.82rem;
   color: #c9d1d9;
+  transition: all 0.3s ease;
+}
+
+.rec-box:hover {
+  background-color: rgba(0, 242, 254, 0.07);
+  border-left-width: 4px;
 }
 
 .rec-title {
@@ -262,6 +902,14 @@ section[data-testid="stSidebar"] div[role="radiogroup"] label[data-checked="true
   margin-bottom: 4px;
 }
 
+.rec-title::before {
+  content: '// ';
+  color: #484f58;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   AFINIDAD BARS
+   ═══════════════════════════════════════════════════════════ */
 .afinidad-row {
   display: flex;
   align-items: center;
@@ -273,7 +921,7 @@ section[data-testid="stSidebar"] div[role="radiogroup"] label[data-checked="true
 .afinidad-label {
   width: 240px;
   color: #c9d1d9;
-  font-family: 'Fira Code', monospace;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -291,52 +939,77 @@ section[data-testid="stSidebar"] div[role="radiogroup"] label[data-checked="true
 .afinidad-bar-fill {
   height: 100%;
   border-radius: 5px;
-  transition: width 0.6s ease;
+  transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .afinidad-pct {
   width: 50px;
   text-align: right;
-  font-family: 'Fira Code', monospace;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
   font-weight: 600;
   color: #00f2fe;
 }
 
-/* section-head: con prefijo $ en páginas de código, sin él en Metodología */
-.section-head {
-  font-family: 'Fira Code', monospace;
-  font-size: 1.15rem;
-  font-weight: 600;
-  color: #00f2fe;
-  border-bottom: 1px solid #1f293d;
-  padding-bottom: 8px;
-  margin: 32px 0 16px 0;
+/* ═══════════════════════════════════════════════════════════
+   METRIC CARDS
+   ═══════════════════════════════════════════════════════════ */
+div[data-testid="metric-container"],
+[data-testid="stMetric"] {
+  background-color: #121826 !important;
+  border: 1px solid #1f293d !important;
+  border-radius: 10px !important;
+  padding: 16px 20px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  transition: all 0.3s ease !important;
 }
 
-.section-head.code-style::before {
-  content: "$ ";
-  color: #c9d1d9;
-  margin-right: 4px;
+div[data-testid="metric-container"]:hover,
+[data-testid="stMetric"]:hover {
+  border-color: rgba(0, 242, 254, 0.25) !important;
+  box-shadow: 0 4px 20px rgba(0, 242, 254, 0.08) !important;
+  transform: translateY(-1px);
 }
 
-.sidebar-logo {
-  font-family: 'Fira Code', monospace;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #00f2fe;
-  letter-spacing: 1px;
-  text-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+[data-testid="stMetricValue"],
+[data-testid="stMetricValue"] * {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+  color: #00f2fe !important;
+  font-size: 1.8rem !important;
+  font-weight: 700 !important;
 }
 
+[data-testid="stMetricLabel"],
+[data-testid="stMetricLabel"] * {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+  color: #c9d1d9 !important;
+  font-size: 0.85rem !important;
+}
+
+[data-testid="stMetricDelta"],
+[data-testid="stMetricDelta"] * {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+  font-size: 0.8rem !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   STATUS MESSAGES
+   ═══════════════════════════════════════════════════════════ */
 .status-ok {
   background: rgba(46, 125, 50, 0.1) !important;
   border: 1px solid rgba(46, 125, 50, 0.3) !important;
   border-radius: 8px;
   padding: 12px 16px;
   color: #81c784 !important;
-  font-family: 'Fira Code', monospace;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
   font-size: 0.88rem;
   margin-bottom: 20px;
+  animation: slideInLeft 0.4s ease;
+}
+
+.status-ok::before {
+  content: '[OK] ';
+  color: #00e676;
+  font-weight: 700;
 }
 
 .status-err {
@@ -345,39 +1018,16 @@ section[data-testid="stSidebar"] div[role="radiogroup"] label[data-checked="true
   border-radius: 8px;
   padding: 12px 16px;
   color: #e57373 !important;
-  font-family: 'Fira Code', monospace;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
   font-size: 0.88rem;
   margin-bottom: 20px;
+  animation: slideInLeft 0.4s ease;
 }
 
-div[data-testid="metric-container"],
-[data-testid="stMetric"] {
-  background-color: #121826 !important;
-  border: 1px solid #1f293d !important;
-  border-radius: 10px !important;
-  padding: 16px 20px !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
-}
-
-[data-testid="stMetricValue"],
-[data-testid="stMetricValue"] * {
-  font-family: 'Fira Code', monospace !important;
-  color: #00f2fe !important;
-  font-size: 1.8rem !important;
-  font-weight: 700 !important;
-}
-
-[data-testid="stMetricLabel"],
-[data-testid="stMetricLabel"] * {
-  font-family: 'Outfit', sans-serif !important;
-  color: #c9d1d9 !important;
-  font-size: 0.85rem !important;
-}
-
-[data-testid="stMetricDelta"],
-[data-testid="stMetricDelta"] * {
-  font-family: 'Fira Code', monospace !important;
-  font-size: 0.8rem !important;
+.status-err::before {
+  content: '[ERR] ';
+  color: #ff5f56;
+  font-weight: 700;
 }
 
 .info-note {
@@ -385,13 +1035,45 @@ div[data-testid="metric-container"],
   border: 1px solid rgba(0, 242, 254, 0.15);
   border-radius: 8px;
   padding: 10px 14px;
-  font-family: 'Fira Code', monospace;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
   font-size: 0.82rem;
   color: #c9d1d9;
   margin-bottom: 14px;
+  transition: all 0.3s ease;
 }
 
-/* Tarjeta de desglose de salario estilo Glassmorphism */
+.info-note::before {
+  content: '[i] ';
+  color: #00f2fe;
+  font-weight: 600;
+}
+
+.info-note:hover {
+  border-color: rgba(0, 242, 254, 0.3);
+  background: rgba(0, 242, 254, 0.06);
+}
+
+.fallback-banner {
+  background: rgba(255, 159, 28, 0.08);
+  border: 1px solid rgba(255, 159, 28, 0.35);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.85rem;
+  color: #ff9f1c;
+  margin-bottom: 18px;
+  animation: fadeInUp 0.4s ease;
+}
+
+.fallback-banner::before {
+  content: '[WARN] ';
+  color: #ffbd2e;
+  font-weight: 700;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SALARY BREAKDOWN CARD
+   ═══════════════════════════════════════════════════════════ */
 .salary-breakdown-card {
   background: linear-gradient(135deg, rgba(18, 24, 38, 0.95) 0%, rgba(12, 15, 22, 0.95) 100%);
   border: 1px solid rgba(0, 242, 254, 0.18);
@@ -400,7 +1082,13 @@ div[data-testid="metric-container"],
   margin-top: 18px;
   margin-bottom: 22px;
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
-  font-family: 'Outfit', sans-serif;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  transition: all 0.35s ease;
+}
+
+.salary-breakdown-card:hover {
+  border-color: rgba(0, 242, 254, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 242, 254, 0.06);
 }
 
 .salary-breakdown-header {
@@ -413,7 +1101,7 @@ div[data-testid="metric-container"],
 }
 
 .salary-breakdown-title {
-  font-family: 'Fira Code', monospace;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
   font-size: 1.05rem;
   font-weight: 600;
   color: #00f2fe;
@@ -423,7 +1111,7 @@ div[data-testid="metric-container"],
 }
 
 .salary-breakdown-total {
-  font-family: 'Fira Code', monospace;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
   font-size: 1.35rem;
   font-weight: 700;
   color: #00e676;
@@ -438,6 +1126,7 @@ div[data-testid="metric-container"],
   font-size: 0.9rem;
   color: #c9d1d9;
   border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
 .salary-row.base {
@@ -461,7 +1150,7 @@ div[data-testid="metric-container"],
   margin-top: 12px;
   padding-top: 12px;
   color: #00f2fe;
-  font-family: 'Fira Code', monospace;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
   font-weight: 700;
   font-size: 1.05rem;
   border-bottom: none;
@@ -473,51 +1162,308 @@ div[data-testid="metric-container"],
   border-radius: 4px;
   padding: 2px 6px;
   font-size: 0.75rem;
-  font-family: 'Fira Code', monospace;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
   color: #00f2fe;
   margin-right: 6px;
   display: inline-block;
   margin-top: 4px;
+  transition: all 0.2s ease;
 }
 
-/* Fallback / modo sin modelos */
-.fallback-banner {
-  background: rgba(255, 159, 28, 0.08);
-  border: 1px solid rgba(255, 159, 28, 0.35);
-  border-radius: 8px;
-  padding: 12px 16px;
-  font-family: 'Fira Code', monospace;
-  font-size: 0.85rem;
-  color: #ff9f1c;
-  margin-bottom: 18px;
+.tech-pill:hover {
+  background: rgba(0, 242, 254, 0.15);
+  box-shadow: 0 0 8px rgba(0, 242, 254, 0.2);
 }
 
-/* Scoping select/listbox/option */
-[data-testid="stAppViewContainer"] [data-baseweb="select"],
-[data-testid="stAppViewContainer"] [data-baseweb="popover"] {
-  font-family: 'Fira Code', monospace !important;
+/* ═══════════════════════════════════════════════════════════
+   DATA FLOATING ELEMENTS (decorativos temática datos)
+   ═══════════════════════════════════════════════════════════ */
+.data-float {
+  position: fixed;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.7rem;
+  color: rgba(0, 242, 254, 0.08);
+  pointer-events: none;
+  z-index: 0;
+  animation: float 6s ease-in-out infinite;
 }
 
-/* ── Responsive: pantallas pequeñas (< 768 px) (#10) ─────────────────────── */
+/* ═══════════════════════════════════════════════════════════
+   SPINNER / LOADER para análisis
+   ═══════════════════════════════════════════════════════════ */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader-ring {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(0, 242, 254, 0.2);
+  border-top-color: #00f2fe;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   NAV BUTTONS (Streamlit native buttons styled as tabs)
+   ═══════════════════════════════════════════════════════════ */
+/* Contenedor de botones de navegacion */
+[data-testid="stHorizontalBlock"] [data-testid="stButton"] {
+  margin: 0 2px;
+}
+
+/* Botones de nav primarios (activos) */
+[data-testid="stHorizontalBlock"] [data-testid="stButton"]>button[kind="primary"] {
+  background: rgba(0, 242, 254, 0.1) !important;
+  border: 1px solid rgba(0, 242, 254, 0.35) !important;
+  color: #00f2fe !important;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+  font-weight: 600 !important;
+  font-size: 0.82rem !important;
+  border-radius: 8px !important;
+  box-shadow: 0 0 12px rgba(0, 242, 254, 0.1) !important;
+  transition: all 0.25s ease !important;
+  white-space: nowrap !important;
+  padding: 8px 16px !important;
+}
+
+/* Botones de nav secundarios (inactivos) */
+[data-testid="stHorizontalBlock"] [data-testid="stButton"]>button[kind="secondary"] {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid #1f293d !important;
+  color: #c9d1d9 !important;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+  font-weight: 400 !important;
+  font-size: 0.82rem !important;
+  border-radius: 8px !important;
+  transition: all 0.25s ease !important;
+  white-space: nowrap !important;
+  padding: 8px 16px !important;
+}
+
+[data-testid="stHorizontalBlock"] [data-testid="stButton"]>button[kind="secondary"]:hover {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(0, 242, 254, 0.2) !important;
+  color: #e6edf3 !important;
+  transform: translateY(-1px);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE: PC & MOBILE
+   ═══════════════════════════════════════════════════════════ */
+
+/* --- Desktop grande (>1200px) --- */
+@media (min-width: 1200px) {
+  .main-title {
+    font-size: 2.4rem;
+  }
+
+  .top-nav {
+    padding: 0 40px;
+  }
+
+  .nav-links {
+    gap: 8px;
+  }
+
+  .nav-link {
+    padding: 8px 18px;
+    font-size: 0.85rem;
+  }
+}
+
+/* --- Tablet (768px - 1024px) --- */
+@media (max-width: 1024px) {
+  .nav-link {
+    padding: 6px 10px;
+    font-size: 0.78rem;
+  }
+
+  .afinidad-label {
+    width: 180px;
+  }
+}
+
+/* --- Mobile (< 768px) --- */
 @media (max-width: 768px) {
+  .top-nav {
+    padding: 0 12px;
+    height: 52px;
+  }
 
-  /* Forzar columnas de tecnologías a apilarse verticalmente */
+  .nav-links {
+    display: none;
+  }
+
+  .nav-hamburger {
+    display: flex;
+  }
+
+  .main-title {
+    font-size: 1.5rem !important;
+    margin-top: 52px;
+  }
+
+  .main-subtitle {
+    font-size: 0.85rem;
+  }
+
+  /* Columnas apiladas en móvil */
   [data-testid="stHorizontalBlock"] {
     flex-direction: column !important;
   }
 
-  /* Ajustar texto del título en móvil */
-  .main-title {
-    font-size: 1.5rem !important;
-  }
-
-  /* Reducir padding del sidebar en móvil */
+  /* Sidebar más compacta */
   section[data-testid="stSidebar"] {
     padding: 8px !important;
   }
 
-  /* Afinidad label más corta en pantallas pequeñas */
   .afinidad-label {
     width: 120px !important;
+    font-size: 0.78rem;
   }
+
+  .afinidad-pct {
+    width: 40px;
+    font-size: 0.78rem;
+  }
+
+  .salary-breakdown-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .salary-breakdown-total {
+    font-size: 1.1rem;
+  }
+
+  .salary-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .section-head {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .code-editor-card {
+    margin-bottom: 12px;
+  }
+
+  .editor-body {
+    padding: 12px 14px;
+    font-size: 0.82rem;
+  }
+
+  .accent-bar {
+    width: 120px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TEMA PROGRAMADOR — elementos decorativos adicionales
+   ═══════════════════════════════════════════════════════════ */
+
+/* Scanline overlay sutil */
+.scanline-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: repeating-linear-gradient(0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 242, 254, 0.015) 2px,
+      rgba(0, 242, 254, 0.015) 4px);
+}
+
+/* Grid background sutil tipo IDE */
+.ide-grid-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(0, 242, 254, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 242, 254, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Glitch text effect on hover */
+.glitch-hover:hover {
+  animation: codeGlow 1.5s ease-in-out infinite;
+}
+
+/* Terminal window decoration */
+.terminal-window {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+.terminal-window-header {
+  background: #161b22;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid #21262d;
+}
+
+.terminal-window-body {
+  padding: 16px;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: #c9d1d9;
+}
+
+/* Code block styling enhancement */
+st.code {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+  font-size: 0.85rem !important;
+}
+
+/* Slider styling enhancement */
+[data-testid="stSlider"] [role="slider"] {
+  background-color: #00f2fe !important;
+  border-color: #00f2fe !important;
+}
+
+[data-testid="stSlider"] [data-testid="stThumbValue"] {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+  color: #00f2fe !important;
+  background: #121826 !important;
+  border: 1px solid #1f293d !important;
+  border-radius: 4px !important;
+  padding: 2px 6px !important;
+}
+
+/* Success/info/warning messages */
+[data-testid="stToast"] {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+}
+
+/* st.success, st.info, st.warning enhancements */
+[data-testid="stAlert"] {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+  border-radius: 8px !important;
+}
+
+[data-testid="stAlert"] [data-testid="stMarkdownContainer"] {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+  font-size: 0.88rem !important;
 }
